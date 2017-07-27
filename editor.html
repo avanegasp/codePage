@@ -10,14 +10,43 @@
   <script src="javascript/javascript.js"></script>
   <body>
 
+    <button type="button" id="btnEnviar" name="button">ENVIAR</button>
+
+    <!-- <div class="cm-s-dracula CodeMirror" id="body">
+
+    </div> -->
+
+  <script src="https://www.gstatic.com/firebasejs/4.1.5/firebase.js"></script>
     <script>
+    // Initialize Firebase
+    var config = {
+    apiKey: "AIzaSyCds4PRttfusMEN2W_5x9p4ScJNiwYLUbU",
+    authDomain: "codepage-44c4d.firebaseapp.com",
+    databaseURL: "https://codepage-44c4d.firebaseio.com",
+    projectId: "codepage-44c4d",
+    storageBucket: "",
+    messagingSenderId: "102654248020"
+    };
+
+    firebase.initializeApp(config);
+
     var myCodeMirror = CodeMirror(document.body, {
-      value: "function myScript(){return 100;}\n",
+      value: "esta línea debe actualizarce",
       mode:  "javascript",
       theme:"dracula"
-});
+  });
+
+    btnEnviar.addEventListener('click', function(){
+      var txtCuerpo = myCodeMirror.value;
+      alert("txtCuerpo");
+    });
+
+    // firebase.database().ref('codepage').push({
+    //   value : valor
+    // })
 
     </script>
+  </script>
 
 
 
