@@ -36,10 +36,13 @@
       theme:"dracula"
   });
 
-    btnEnviar.addEventListener('click', function(){
-      var txtCuerpo = myCodeMirror.value;
-      alert("txtCuerpo");
-    });
+    myCodeMirror.on("change", function(content) {
+      // myCodeMirror.value = content.getValue();
+      // console.log(content.getValue())
+      firebase.database().ref('codepage').set(content.getValue())
+});
+
+
 
     // firebase.database().ref('codepage').push({
     //   value : valor
