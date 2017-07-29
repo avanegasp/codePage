@@ -12,11 +12,7 @@
 
     <button type="button" id="btnEnviar" name="button">ENVIAR</button>
 
-    <!-- <div class="cm-s-dracula CodeMirror" id="body">
-
-    </div> -->
-
-  <script src="https://www.gstatic.com/firebasejs/4.1.5/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.1.5/firebase.js"></script>
     <script>
     // Initialize Firebase
     var config = {
@@ -30,23 +26,25 @@
 
     firebase.initializeApp(config);
 
+
+
     var myCodeMirror = CodeMirror(document.body, {
       value: "esta línea debe actualizarce",
       mode:  "javascript",
       theme:"dracula"
   });
 
+
     myCodeMirror.on("change", function(content) {
-      // myCodeMirror.value = content.getValue();
-      // console.log(content.getValue())
       firebase.database().ref('codepage').set(content.getValue())
 });
 
+    firebase.database().ref('codepage')
+    .on('value', function(snapshot){
+      myCodeMirror.setValue(snapshot.val())
+    });
 
 
-    // firebase.database().ref('codepage').push({
-    //   value : valor
-    // })
 
     </script>
   </script>
