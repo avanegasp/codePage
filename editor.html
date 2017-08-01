@@ -44,9 +44,6 @@
 });
 
 
-  // firebase.database().ref('codepads');
-  // urlCode(user.uid);
-
   function urlCode (content, uid){
   firebase.database().ref('codepads').push({
     content: content,
@@ -54,6 +51,34 @@
   });
 }
 
+  firebase.database().ref('codepads').on('child_added', function(data){
+    console.log("ha ingresado a la sala " + data.val().content + data.val().uid)
+  })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// function factorial (n){
+//  var resultado = 1;
+//   if(i=1; i<=n; i++){
+//     resultado = resultado * i
+//   }
+//   return resultado
+// }
 
 
 
