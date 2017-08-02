@@ -1,0 +1,25 @@
+{
+  "name": "codepage",
+  "version": "0.1.0",
+  "description": "Text editor on-line",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/avanegasp/codepage.git"
+  },
+  "keywords": [
+    "javascript",
+    "firebase",
+    "codemirror"
+  ],
+  "author": "",
+  "license": "MIT",
+  "homepage": "https://github.com/avanegasp/codepage#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-webserver": "^0.9.1"
+  }
+}
