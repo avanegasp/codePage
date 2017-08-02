@@ -30,19 +30,12 @@
     firebase.initializeApp(config);
 
 
-    // var codemirror = CodeMirror(document.querySelector(".editor"), {
-    //   value: "",
-    //   mode:  "javascript",
-    //   theme: "dracula"
-    // });
-
-
-      // INGRESO CON GITHUB
+        // INGRESO CON GITHUB
         function ingresoGithub(){
           if(!firebase.auth().currentUser){ // Debo saber si mi usuario ha ingresado,
             var provider = new firebase.auth.GithubAuthProvider(); // Si no ha ingresado Gitub es mi proveedor
 
-            provider.addScope('repo'); // debo pasar mi URL (es mi sistema de autentificación)
+            provider.addScope('https://avanegasp.github.io/codepage/'); // debo pasar mi URL (es mi sistema de autentificación)
 
             firebase.auth().signInWithPopup(provider).then(function(result) {
       // This gives you a GitHub Access Token. You can use it to access the GitHub API.
@@ -72,7 +65,8 @@
           }
         };
 
-        document.getElementById('btn-github').addEventListener('click', ingresoGithub, false);
+        document.getElementById('btn-github').addEventListener('click',ingresoGithub,false);
+
 
   </script>
 </body>
