@@ -18,12 +18,12 @@
   <script>
     // Initialize Firebase
     var config = {
-      apiKey: "AIzaSyDUhOJ0Zt-KUDMtiCjNt4E3qybHQndm3fE",
-      authDomain: "codepad-75be6.firebaseapp.com",
-      databaseURL: "https://codepad-75be6.firebaseio.com",
-      projectId: "codepad-75be6",
-      storageBucket: "",
-      messagingSenderId: "135663807027"
+      apiKey: "AIzaSyCds4PRttfusMEN2W_5x9p4ScJNiwYLUbU",
+      authDomain: "codepage-44c4d.firebaseapp.com",
+      databaseURL: "https://codepage-44c4d.firebaseio.com",
+      projectId: "codepage-44c4d",
+      storageBucket: "codepage-44c4d.appspot.com",
+      messagingSenderId: "102654248020"
     };
     firebase.initializeApp(config);
 
@@ -34,10 +34,13 @@
       theme: "dracula"
     });
 
+
+
     function initOwner() {
-      // crear el registgro en firebase
+      // crear el registro en firebase
       firebase.database().ref("codepads").push({
-        content: ""
+        content: "",
+        uid : ""
       }).then(function(snapshot) {
         window.location.hash = snapshot.key;
         console.log("Se creó el registro con id " + snapshot.key);
@@ -45,7 +48,8 @@
         // escucha los cambios del editor y los manda a firebase
         codemirror.on("change", function(content) {
           firebase.database().ref("codepads/" + snapshot.key).set({
-            content: content.getValue()
+            content: content.getValue(),
+            // uid: uid.window.location.hash
           });
         });
       });
@@ -70,6 +74,10 @@
     } else {
       initOwner();
     }
+
+
+
+
 
   </script>
 </body>

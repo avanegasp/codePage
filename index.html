@@ -9,10 +9,17 @@
 
 </head>
 <body>
+
   <section>
     <h1>CODEPAD</h1>
     <button id="btn-github">Ingresa con Github</button>
   </section>
+
+  <div>
+    <span id="user-name">Nombre :</span>
+    <span id="user-email">Email:</span>
+    <span id="user-uid">UID:</span>
+  </div>
 
   <script src="lib/codemirror.js"></script>
   <script src="mode/javascript/javascript.js"></script>
@@ -20,28 +27,32 @@
   <script>
     // Initialize Firebase
     var config = {
-      apiKey: "AIzaSyDUhOJ0Zt-KUDMtiCjNt4E3qybHQndm3fE",
-      authDomain: "codepad-75be6.firebaseapp.com",
-      databaseURL: "https://codepad-75be6.firebaseio.com",
-      projectId: "codepad-75be6",
-      storageBucket: "",
-      messagingSenderId: "135663807027"
+      apiKey: "AIzaSyCds4PRttfusMEN2W_5x9p4ScJNiwYLUbU",
+      authDomain: "codepage-44c4d.firebaseapp.com",
+      databaseURL: "https://codepage-44c4d.firebaseio.com",
+      projectId: "codepage-44c4d",
+      storageBucket: "codepage-44c4d.appspot.com",
+      messagingSenderId: "102654248020"
     };
     firebase.initializeApp(config);
+
+    var userName = document.getElementById('user-name')
+    var userEmail = document.getElementById('user-email')
+    var userUid = document.getElementById('user-uid')
 
 
         // INGRESO CON GITHUB
     function ingresoGithub(e){
       e.preventDefault();
-      alert('entro a ingresoGithub')
+      console.log('entro a ingresoGithub')
       if(!firebase.auth().currentUser){ // Debo saber si mi usuario ha ingresado,
-        alert('entro a autenticarse')
+        console.log('entro a autenticarse')
         var provider = new firebase.auth.GithubAuthProvider(); // Si no ha ingresado Gitub es mi proveedor
 
         // provider.addScope('https://avanegasp.github.io/codepage/'); // debo pasar mi URL (es mi sistema de autentificación)
 
         firebase.auth().signInWithRedirect(provider);
-        alert('provider')
+        console.log('provider')
       }else{
         console.log('ya esta autenticado')
         firebase.auth().signOut;
@@ -53,21 +64,40 @@
 
     firebase.auth().getRedirectResult().then(function(result) {
       firebase.auth().onAuthStateChanged(function(user){
-        console.log(user)
+        console.log("este es el usuario " )
       })
-      console.log(result)
-      // alert('reedireccionó')
+      console.log("este es el resultado")
+      // console.log('reedireccionó')
       // if (result.credential) {
       //     alert('credencial')
       //   var token = result.credential.accessToken;
       // }
       // var user = result.user;
     }).catch(function(error) {
-      var errorCode = error.code;
-      var errorMessage = error.message;
-      var email = error.email;
-      var credential = error.credential;
+      console.log(error)
     });
+
+    function userProfile(){
+      firebase.auth().onAuthStateChanged(function(user){
+        if(user){
+
+          var name = user.displayName;
+          var email = user.email;
+          // var photo = user.photoURL;
+          var uid = user.uid;
+
+          userName.textContent = ('NOMBRE: ' + name);
+          userEmail.textContent = ('EMAIL: ' + email);
+          userUid.textContent = ('UID: ' + uid);
+
+          console.log(user);
+        }
+      });
+    }
+
+    window.onload = function(){
+      userProfile()
+    }
 
   </script>
 </body>
