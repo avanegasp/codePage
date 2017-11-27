@@ -48,9 +48,7 @@
       if(!firebase.auth().currentUser){ // Debo saber si mi usuario ha ingresado,
         console.log('entro a autenticarse')
         var provider = new firebase.auth.GithubAuthProvider(); // Si no ha ingresado Gitub es mi proveedor
-
-        // provider.addScope('https://avanegasp.github.io/codepage/'); // debo pasar mi URL (es mi sistema de autentificación)
-
+        // provider.addScope('https://avanegasp.github.io/codepage/editor'); // debo pasar mi URL (es mi sistema de autentificación)
         firebase.auth().signInWithRedirect(provider);
         console.log('provider')
       }else{
